@@ -35,6 +35,6 @@ public class Hooks extends Base {
             s.embed(base.capture(),"image/png"); //stick it in the report
         }
         base.Driver.close();
-        log.info("Closed Browser for scenario "+ s.getName());
+        log.info("Closed Browser after completing scenario "+ s.getName());
     }
 }
