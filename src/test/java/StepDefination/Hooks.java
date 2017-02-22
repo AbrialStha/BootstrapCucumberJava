@@ -14,27 +14,30 @@ public class Hooks extends Base {
     /**
      * for the looger
      */
-    Log log = new Log(this.getClass());
+    private Log log;
     private Base base;
+    private BrowserFactory browserFactory;
 
     public Hooks(Base base) {
         this.base = base;
+        this.log = new Log(this.getClass());
+        this.browserFactory = new BrowserFactory();
     }
 
     @Before
     public void initialize(Scenario s) {
-        log.info("Started Browser for scenario "+ s.getName());
-        base.Driver = BrowserFactory.getBrowser("chrome");
+        log.info("Started Browser for scenario " + s.getName());
+        base.Driver = browserFactory.getBrowser("chrome");
     }
 
     @After
     public void teardown(Scenario s) {
         /* get the screenshot and attache it with the report */
-        if(s.isFailed()) {
+        if (s.isFailed()) {
             log.error(s.getId());
-            s.embed(base.capture(),"image/png"); //stick it in the report
+            s.embed(base.capture(), "image/png"); //stick it in the report
         }
         base.Driver.close();
-        log.info("Closed Browser after completing scenario "+ s.getName());
+        log.info("Closed Browser after completing scenario " + s.getName());
     }
 }

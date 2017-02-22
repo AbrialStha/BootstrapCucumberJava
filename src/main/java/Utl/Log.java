@@ -11,51 +11,56 @@ public class Log {
     /**
      * Uninheritable final calss
      */
-    private static Class<?> clazz;
+    private Class<?> clazz;
     /**
      * private logger instance declaration
      */
-    private static Logger logger;
+    private Logger logger;
 
     /**
      * Creating the generic type class constructor
+     *
      * @param clazz
      */
     public Log(Class<?> clazz) {
-        Log.clazz = clazz;
-        Log.logger = LoggerFactory.getLogger(Log.clazz);
+        this.clazz = clazz;
+        this.logger = LoggerFactory.getLogger(clazz);
     }
 
     /**
      * to log the message at the Info level
+     *
      * @param message
      * @return
      */
-    public static void info(String message){
+    public void info(String message) {
         logger.info(clazz.getCanonicalName() + ": " + message);
     }
 
     /**
      * to log the message at the error level
+     *
      * @param message
      */
-    public static void error(String message) {
+    public void error(String message) {
         logger.error(clazz.getCanonicalName() + ":" + message);
     }
 
     /**
      * to log the message at the trace level
+     *
      * @param message
      */
-    public static void trace(String message) {
+    public void trace(String message) {
         logger.trace(clazz.getCanonicalName() + ": " + message);
     }
 
     /**
      * to log the message at the warn level
+     *
      * @param message
      */
-    public static void warn(String message) {
+    public void warn(String message) {
         logger.warn(clazz.getCanonicalName() + ": " + message);
     }
 

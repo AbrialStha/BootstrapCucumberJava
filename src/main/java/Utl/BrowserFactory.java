@@ -10,22 +10,31 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class BrowserFactory {
 
+    // Log class initialization
+    private Log log;
+
+    public BrowserFactory() {
+        this.log = new Log(this.getClass());
+    }
+
     /**
      * Factory method for getting the browser
-     * @param browserName
-     * @return browser
+     *
+     * @param browserName String
+     * @return browser WebDriver
      */
-    public static WebDriver getBrowser(String browserName) {
+    public WebDriver getBrowser(String browserName) {
         WebDriver browser = null;
-        switch ( browserName.toLowerCase() ) {
+        switch (browserName.toLowerCase()) {
             case "firefox":
                 browser = new FirefoxDriver();
+                log.info("this is Firefox Browser");
                 break;
             case "chrome":
+                log.info("Initialize the chrome Browser");
                 System.setProperty("webdriver.chrome.driver", "E:\\dependecies\\chromedriver.exe");
                 browser = new ChromeDriver();
                 break;
-
             default:
                 break;
         }
